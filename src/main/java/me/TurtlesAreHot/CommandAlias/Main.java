@@ -14,38 +14,23 @@ public class Main extends Plugin {
 
     public static Configuration configuration;
     public static Configuration alias;
+    public static File dataFolder;
     @Override
     public void onEnable() {
+        dataFolder = getDataFolder();
         try {
             alias = loadAlias();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        getProxy().getPluginManager().registerListener(this,new onCommand());
-    }
-
-    public Configuration loadConfig() throws IOException {
-        // Check if the plugin data folder exists, if it doesn't create it
-        if(!getDataFolder().exists()) {
-            getDataFolder().mkdir();
-        }
-
-        File config = new File(getDataFolder(), "config.yml");
-
-        // Check if the config file exists, if it doesn't we create it.
-        if(!config.exists()) {
-            config.createNewFile();
-            FileWriter fw = new FileWriter(config);
-            fw.write("ignorecase: true");
-            fw.flush();
-            fw.close();
-        }
-
-        return ConfigurationProvider.getProvider(YamlConfiguration.class).load(config);
+        getProxy().getPluginManager().registerCommand(this, new Reload());
+        getProxy().getPluginManager().registerListener(this, new onCommand());
     }
 
     public Configuration loadAlias() throws IOException {
+        if(!getDataFolder().exists()) {
+            getDataFolder().mkdir();
+        }
         // Since we check if the plugin data folder exists already in loadConfig, we do not need to do so here.
         File ali = new File(getDataFolder(), "commands.yml");
 
@@ -68,7 +53,6 @@ public class Main extends Plugin {
     public static String getAlias(String command) {
         return alias.getString(command);
     }
-
 
 
 
