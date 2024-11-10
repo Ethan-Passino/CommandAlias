@@ -22,10 +22,8 @@
 - `/careload` - 🔄 Reloads the command alias configuration.
 
 ## 🛠️ Configuration
-The configuration file (`config.yml`) allows you to define custom aliases for in-game commands. Here's an example of what your configuration might look like:
+The configuration file (`config.yml`) allows you to define custom aliases for in-game commands. EleriumMC Config
+![](https://i.imgur.com/m98ww0n.png)
 
-```yaml
-aliases:
-  shout: /broadcast
-  hi: /greet
-  rules: /serverrules
+## Skygrid Example
+![javaw_r4MGhkiuPR](https://github.com/user-attachments/assets/99c8e284-028a-4c01-a739-1af86f8cd441)
